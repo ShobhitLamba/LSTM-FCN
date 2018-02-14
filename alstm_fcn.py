@@ -12,7 +12,7 @@ from utils.layer_utils import AttentionLSTM
 MAX_SEQUENCE_LENGTH = 100 #Placeholder
 NB_CLASSES = 100 # Placeholder
 
-def lstm_fcn_block():
+def alstm_fcn_block():
     ip = Input(shape = (1, MAX_SEQUENCE_LENGTH))
 
     x = AttentionLSTM(8)(ip)

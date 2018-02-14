@@ -1,22 +1,24 @@
-# Implementation of Multivariate LSTM + FCN block
+# Implementation of Multivariate Attention LSTM + FCN block
 # Author: Shobhit Lamba
 # e-mail: slamba4@uic.edu
 
 # Importing the libraries
 from keras.models import Model
-from keras.layers import Input, Dense, LSTM, concatenate, Activation
+from keras.layers import Input, Dense, concatenate, Activation
 from keras.layers import Conv1D, BatchNormalization, GlobalAveragePooling1D, Permute, Dropout
+
+from utils.layer_utils import AttentionLSTM
 
 MAX_TIMESTEPS = 100 #Placeholder
 MAX_NB_VARIABLES = 100 #Placeholder
 NB_CLASSES = 100 # Placeholder
 
-def mlstm_fcn_block():
+def malstm_fcn_block():
     
     ip = Input(shape=(MAX_NB_VARIABLES, MAX_TIMESTEPS))
 
     x = Masking()(ip)
-    x = LSTM(8)(x)
+    x = AttentionLSTM(8)(x)
     x = Dropout(0.8)(x)
 
     y = Permute((2, 1))(ip)

@@ -4,7 +4,7 @@
 
 # Importing the libraries
 from keras.models import Model
-from keras.layers import Input, Dense, LSTM, concatenate, Activation
+from keras.layers import Input, Dense, LSTM, concatenate, Masking, Activation
 from keras.layers import Conv1D, BatchNormalization, GlobalAveragePooling1D, Permute, Dropout
 
 from utils.se_block import squeeze_excite_block
@@ -38,7 +38,7 @@ def mlstm_fcn_block():
 
     x = concatenate([x, y])
 
-    out = Dense(NB_CLASS, activation = "softmax")(x)
+    out = Dense(NB_CLASSES, activation = "softmax")(x)
 
     model = Model(ip, out)
     model.summary()
@@ -73,7 +73,7 @@ def se_mlstm_fcn_block():
 
     x = concatenate([x, y])
 
-    out = Dense(NB_CLASS, activation = "softmax")(x)
+    out = Dense(NB_CLASSES, activation = "softmax")(x)
 
     model = Model(ip, out)
     model.summary()
